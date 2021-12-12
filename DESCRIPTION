@@ -1,0 +1,19 @@
+Package: polygone
+Type: Package
+Title: Functions for manipulating polygon and linestring data in R
+Version: 0.1.0
+Author: Sixten Maxmillian Thestrup
+Maintainer: Sixten Maximillian Thestrup <smth@build.aau.dk>
+Description: This package is an extension of existing packages such as sf and
+    lwgeom. The aim is to simplify common tasks carried out on polygon and
+    linestring data such as computing contiguities, determine line dead ends
+    and merging neighbouring polygons.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Imports:
+    lwgeom,
+    magrittr,
+    sf
