@@ -18,5 +18,5 @@ Compute dead ends of an sf linestring object.
 \details{
 Given a linestring object where \code{A} = \emph{intersections} and \code{B} = \emph{endpoints}, the function
 computes \verb{A \\ B}, i.e. the relative complement of \code{A} in \code{B}. If the input contains geometries of type
-MULTILINESTRING, they cast to LINESTRING before computing.
+MULTILINESTRING, they are cast to LINESTRING before computing.
 }
