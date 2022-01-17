@@ -1,10 +1,8 @@
 #' Compute rook contiguity of an sf object
-#'
 #' @description Wrapper function for [sf::st_relate()]. Computes a sparse index list of rook contiguities for an sf polygon object.
-#'
 #' @importFrom sf st_geometry_type st_relate
 #' @param x object of class sf, sfc or sfg with geometry type POLYGON or MULTIPOLYGON.
-#' @param fill_empty logical; should empty indices be filled (`TRUE`)?
+#' @param fill_empty logical; should empty indices be filled? Defaults to `FALSE`.
 #' @return A sparse index list of rook contiguities.
 #' @details This function is a wrapper for [sf::st_relate()] with DE9-IM pattern `F***1****`.
 #' Setting `fill_empty` to `TRUE` guarantees at least one index per polygon by adding self-neighboring.

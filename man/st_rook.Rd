@@ -9,7 +9,7 @@ st_rook(x, fill_empty = FALSE)
 \arguments{
 \item{x}{object of class sf, sfc or sfg with geometry type POLYGON or MULTIPOLYGON.}
 
-\item{fill_empty}{logical; should empty indices be filled (\code{TRUE})?}
+\item{fill_empty}{logical; should empty indices be filled? Defaults to \code{FALSE}.}
 }
 \value{
 A sparse index list of rook contiguities.
