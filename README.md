@@ -1,6 +1,6 @@
 # **polygone:** functions for manipulating polygon and linestring data in R
 
-This package is a an extension of existing R packages such as *sf* and *lwgeom*. The aim is to simplify common tasks carried out on spatial data such as computing contiguities, determine leaf nodes and merging polygons.
+This package is a an extension of existing R packages such as *sf* and *lwgeom*. The aim is to simplify common tasks carried out on spatial data such as computing contiguities, determine leaf nodes and conditional merging of polygons.
 
 ## Installation
 
@@ -21,4 +21,4 @@ The following is the up to date list of functions available in the package. Plea
 
 ## Acknowledgement
 
-This package is part of a project which gratefully acknowledges financial support from [**data.org**](https://data.org).
+This package is part of a research project which gratefully acknowledges financial support from [![](images/mwdy16M-_400x400.jpg "data.org")](https://data.org)

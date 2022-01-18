@@ -4,7 +4,7 @@
 #' @param x object of class sf, sfc or sfg with geometry type POLYGON or MULTIPOLYGON.
 #' @param fill_empty logical; should empty indices be filled? Defaults to `FALSE`.
 #' @return A sparse index list of rook contiguities.
-#' @details This function is a wrapper for [sf::st_relate()] with DE9-IM pattern `F***1****`.
+#' @details This function is a wrapper for [sf::st_relate()] with DE9-IM predicate `F***1****`.
 #' Setting `fill_empty` to `TRUE` guarantees at least one index per polygon by adding self-neighboring.
 #' @export
 st_rook <- function(x, fill_empty = FALSE) {

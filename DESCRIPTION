@@ -6,7 +6,7 @@ Author: Sixten Maxmillian Thestrup
 Maintainer: Sixten Maximillian Thestrup <smth@build.aau.dk>
 Description: This package is an extension of existing packages such as sf and
     lwgeom. The aim is to simplify common tasks carried out on spatial data such
-    as computing contiguities, determine leaf nodes and merging polygons.
+    as computing contiguities, determine leaf nodes and conditional merging of polygons.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
