@@ -1,10 +1,12 @@
 # **polygone:** functions for manipulating polygon and linestring data in R
 
-This package is a an extension of existing R packages such as *sf* and *lwgeom*. The aim is to simplify common tasks carried out on spatial data such as computing contiguities, determine leaf nodes and conditional merging of polygons.
+This package is a an extension of existing R packages such as [`sf`](https://github.com/r-spatial/sf) and [`lwgeom`](https://github.com/r-spatial/lwgeom). The aim is to simplify common tasks carried out on spatial data such as computing contiguities, determine leaf nodes and conditional merging of polygons.
 
 ## Installation
 
-Simply run the following to install the latest developer version:
+This package depends heavily on [`sf`](https://github.com/r-spatial/sf) and [`lwgeom`](https://github.com/r-spatial/lwgeom) and to some extent on [`igraph`](https://github.com/igraph/igraph). Optionally, the package relies on [`future.apply`](https://github.com/HenrikBengtsson/future.apply) for processing certain functions in parallel. It is recommended to install these packages first.
+
+Run the following to install the latest available version of `polygone`:
 
     library(devtools)
     instal_github("thesixmax/polygone")
