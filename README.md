@@ -21,4 +21,6 @@ The following is the up to date list of functions available in the package. Plea
 
 ## Acknowledgement
 
-This package is part of a research project which gratefully acknowledges financial support from [<img src="images/mwdy16M-_400x400.jpg" title="data.org" width="80"/>](https://data.org)
+This package is part of a research project which gratefully acknowledges financial support from
+
+[<img src="images/mwdy16M-_400x400.jpg" title="data.org" width="100"/>](https://data.org)
