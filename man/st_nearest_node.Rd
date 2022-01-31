@@ -2,7 +2,7 @@
 % Please edit documentation in R/st_nearest_node.R
 \name{st_nearest_node}
 \alias{st_nearest_node}
-\title{Compute a linestring connection from an sf POINT object to nodes of a sf LINESTRING object}
+\title{Shortest linestring connections from an sf POINT object to nodes of a sf LINESTRING object}
 \usage{
 st_nearest_node(points, lines, parallel = FALSE)
 }
@@ -15,14 +15,15 @@ st_nearest_node(points, lines, parallel = FALSE)
 }
 \value{
 An sf object of type LINESTRING containing the minimum distance linestring
-connection from the \code{point} input to the nodes of the \code{lines} input.
+connection from the \code{points} input to nodes of the \code{lines} input.
 }
 \description{
 Compute the minimum distance linestring connection from an sf POINT object to nodes of an sf LINESTRING object
 }
 \details{
-Given a point, the function computes the minimum distance tocthe nodes of a set of
-linestrings and outputs the relevant linestring. If the point overlaps
-with a node, this node is not considered in the computation.
-This guarantees linestrings to have lengh > 0.
+Given a point, the function computes the minimum distance to the nodes of a set of
+linestrings and outputs the relevant linestring. If the point already overlaps
+with an existing node, this node is disregarded.
+This guarantees linestrings to have length > 0. If the \code{points} or \code{lines} input contains
+geometries of type MULTIPOINT or MULTILINESTRING, they are converted to POINT and LINESTRING before computing.
 }

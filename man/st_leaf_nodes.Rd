@@ -2,7 +2,7 @@
 % Please edit documentation in R/st_leaf_nodes.R
 \name{st_leaf_nodes}
 \alias{st_leaf_nodes}
-\title{Compute leaf nodes of an sf LINESTRING object}
+\title{Leaf nodes of an sf LINESTRING object}
 \usage{
 st_leaf_nodes(input)
 }
@@ -16,7 +16,7 @@ An sf object of type POINT containing all linestring leaf nodes.
 Helper function for computing leaf nodes of an sf LINESTRING object.
 }
 \details{
-Given a linestring object where \code{A} = \emph{linestring intersections} and \code{B} = \emph{linestring endpoints}, the function
-computes \verb{A \\ B}, i.e. the relative complement of \code{A} in \code{B}. If the input contains geometries of type
+Given a linestring object we can determine \code{A} = \emph{linestring intersections} and \code{B} = \emph{linestring endpoints}.
+The function then computes \verb{A\\B}, i.e. the relative complement of \code{A} in \code{B}. If the input contains geometries of type
 MULTILINESTRING, they are cast to LINESTRING before computing.
 }

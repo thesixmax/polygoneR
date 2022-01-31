@@ -11,11 +11,17 @@ Run the following to install the latest available version of `polygone`:
     library(devtools)
     instal_github("thesixmax/polygone")
 
+### On the usage of dplyr
+
+\<TEXT HERE>
+
+sf works well with dplyr, easier to read and rewrite code, bla bla.
+
 ## List of functions
 
 The following is the up to date list of functions available in the package. Please refer to the individual man pages for more information. Extended documentation with examples is work in progress.
 
--   `st_rook`: Compute a sparse index list of rook contiguities for an sf POLYGON object.
+-   `st_queen`/`st_rook`/`st_bishop` Compute a sparse index list of rook contiguities for an sf POLYGON object.
 
 -   `st_leaf_nodes`: Compute leaf nodes of an sf LINESTRING object.
 
@@ -25,4 +31,4 @@ The following is the up to date list of functions available in the package. Plea
 
 This package is part of a research project which gratefully acknowledges financial support from
 
-[<img src="images/mwdy16M-_400x400.jpg" title="data.org" width="100"/>](https://data.org)
+[data.org](https://data.org)
