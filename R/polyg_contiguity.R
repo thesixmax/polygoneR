@@ -9,7 +9,7 @@
 #' contiguity, `F***1****` for rook contiguity and `F***0****` for bishop contiguity.
 #' Setting `fill_empty` to `TRUE` guarantees at least one index per polygon by adding self-neighboring.
 #' @export
-st_contiguity <- function(x, contiguity = "queen", fill_empty = FALSE) {
+polyg_contiguity <- function(x, contiguity = "queen", fill_empty = FALSE) {
   if (!(contiguity %in% c("queen", "rook", "bishop"))) {
     stop("Contiguity should be eiter \"queen\", \"rook\" or \"bishop\"")
   }

@@ -9,13 +9,13 @@
 #' @param parallel logical; should the computation be in parallel? Defaults to FALSE.
 #' @return An sf object of type LINESTRING containing the minimum distance linestring
 #' connection from the `points` input to nodes of the `lines` input.
-#' @details Given a point, the function computes the minimum distance to the nodes of a set of
-#' linestrings and outputs the relevant linestring. If the point already overlaps
-#' with an existing node, this node is disregarded.
+#' @details For each point, the function computes the minimum distance to the nodes of a set of
+#' linestrings and outputs the minimum distance linestring. If the point already intersects
+#' with an existing node, this node is disregarded in the computation.
 #' This guarantees linestrings to have length > 0. If the `points` or `lines` input contains
 #' geometries of type MULTIPOINT or MULTILINESTRING, they are converted to POINT and LINESTRING before computing.
 #' @export
-st_nearest_node <- function(points, lines, parallel = FALSE) {
+polyg_nearest_node <- function(points, lines, parallel = FALSE) {
   if (any(!unique(sf::st_geometry_type(lines)) %in% c("LINESTRING", "MULTILINESTRING"))) {
     stop("Lines input should be LINESTRING or MULTILINESTRING")
   }
@@ -43,9 +43,11 @@ st_nearest_node <- function(points, lines, parallel = FALSE) {
     lines_connection <- nearest_points[which.min(distances)]
     return(lines_connection)
   }
+  start_time <- Sys.time()
+  message("Computing nearest nodes")
   lines_process <-
     if (parallel == TRUE) {
-      future_lapply(points, linestrings_fun, future.seed = TRUE)
+      future.apply::future_lapply(points, linestrings_fun, future.seed = TRUE)
     } else {
       lapply(points, linestrings_fun)
     }
@@ -55,5 +57,7 @@ st_nearest_node <- function(points, lines, parallel = FALSE) {
     dplyr::select(-"geom") %>%
     sf::st_make_valid() %>%
     sf::st_collection_extract("LINESTRING")
+  end_time <- Sys.time()
+  message(paste0("Nearest nodes successfully computed in"), difftime(end_time, start_time, units = "mins"))
   return(lines_output)
 }
