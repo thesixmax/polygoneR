@@ -2,28 +2,29 @@
 % Please edit documentation in R/polyg_nearest_node.R
 \name{polyg_nearest_node}
 \alias{polyg_nearest_node}
-\title{Shortest linestring connections from an sf POINT object to nodes of a sf LINESTRING object}
+\title{Shortest linestring connections from an \code{sf} POINT object to nodes of a \code{sf} LINESTRING object}
 \usage{
-polyg_nearest_node(points, lines, parallel = FALSE)
+polyg_nearest_node(points_input, lines_input, parallel = FALSE)
 }
 \arguments{
-\item{points}{object of class sf, sfc or sfg with geometry type POINT or MULTIPOINT.}
+\item{points_input}{object of class sf, sfc or sfg with geometry type POINT or MULTIPOINT.}
 
-\item{lines}{object of class sf, sfc or sfg with geometry type LINESTRING or MULTILINESTRING.}
+\item{lines_input}{object of class sf, sfc or sfg with geometry type LINESTRING or MULTILINESTRING.}
 
-\item{parallel}{logical; should the computation be in parallel? Defaults to FALSE.}
+\item{parallel}{logical; should the computation be in parallel? Default is \code{FALSE}.
+Computation in parallel requires installation of \code{future.apply} and setting a \code{plan()}.}
 }
 \value{
-An sf object of type LINESTRING containing the minimum distance linestring
-connection from the \code{points} input to nodes of the \code{lines} input.
+An \code{sf} object of type LINESTRING containing the minimum distance linestring
+connections from each point in \code{points_input} to nodes in \code{lines_input}.
 }
 \description{
-Compute the minimum distance linestring connection from an sf POINT object to nodes of an sf LINESTRING object
+Compute the minimum distance linestring connection from an \code{sf} POINT object to nodes of an \code{sf} LINESTRING object
 }
 \details{
-Given a point, the function computes the minimum distance to the nodes of a set of
-linestrings and outputs the relevant linestring. If the point already overlaps
-with an existing node, this node is disregarded.
-This guarantees linestrings to have length > 0. If the \code{points} or \code{lines} input contains
+For each point, the function computes the minimum distance to the nodes of a set of
+linestrings and outputs the minimum distance linestring. If the point already intersects
+with an existing node, that particular node is disregarded in the computation.
+This guarantees linestrings to have length > 0. If \code{points_input} or \code{lines_input} contain
 geometries of type MULTIPOINT or MULTILINESTRING, they are converted to POINT and LINESTRING before computing.
 }

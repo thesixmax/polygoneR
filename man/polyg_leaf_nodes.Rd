@@ -2,21 +2,24 @@
 % Please edit documentation in R/polyg_leaf_nodes.R
 \name{polyg_leaf_nodes}
 \alias{polyg_leaf_nodes}
-\title{Leaf nodes of an sf LINESTRING object}
+\title{Leaf nodes of an \code{sf} LINESTRING object}
 \usage{
-polyg_leaf_nodes(input)
+polyg_leaf_nodes(lines_input, verbose = FALSE)
 }
 \arguments{
-\item{input}{object of class sf, sfc or sfg with geometry type LINESTRING or MULTILINESTRING.}
+\item{lines_input}{object of class sf, sfc or sfg with geometry type
+LINESTRING or MULTILINESTRING.}
+
+\item{verbose}{logical; should computing time be printed?}
 }
 \value{
-An sf object of type POINT containing all linestring leaf nodes.
+An sfc object of type POINT containing all leaf nodes of \code{lines_input}.
 }
 \description{
-Helper function for computing leaf nodes of an sf LINESTRING object.
+Helper function for computing leaf nodes of an \code{sf} LINESTRING object.
 }
 \details{
-Given a linestring object we can determine \code{A} = \emph{linestring intersections} and \code{B} = \emph{linestring endpoints}.
-The function then computes \verb{A\\B}, i.e. the relative complement of \code{A} in \code{B}. If the input contains geometries of type
-MULTILINESTRING, they are cast to LINESTRING before computing.
+Function to compute leaf nodes, i.e. nodes which do no intersect
+with other nodes in the \code{sf} LINESTRING object. If \code{lines_input} contains geometries
+of type MULTILINESTRING, they are cast to LINESTRING before computing.
 }

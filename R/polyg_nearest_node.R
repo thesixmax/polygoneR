@@ -1,43 +1,49 @@
-#' Shortest linestring connections from an sf POINT object to nodes of a sf LINESTRING object
-#' @description Compute the minimum distance linestring connection from an sf POINT object to nodes of an sf LINESTRING object
+#' Shortest linestring connections from an `sf` POINT object to nodes of a `sf` LINESTRING object
+#' @description Compute the minimum distance linestring connection from an `sf` POINT object to nodes of an `sf` LINESTRING object
 #' @importFrom sf st_nearest_points st_intersects st_length st_sf st_crs st_make_valid st_collection_extract
-#' @importFrom dplyr slice rename filter
+#' st_set_crs st_crs
 #' @importFrom magrittr %>%
 #' @importFrom future.apply future_lapply
-#' @param points object of class sf, sfc or sfg with geometry type POINT or MULTIPOINT.
-#' @param lines object of class sf, sfc or sfg with geometry type LINESTRING or MULTILINESTRING.
-#' @param parallel logical; should the computation be in parallel? Defaults to FALSE.
-#' @return An sf object of type LINESTRING containing the minimum distance linestring
-#' connection from the `points` input to nodes of the `lines` input.
+#' @param points_input object of class sf, sfc or sfg with geometry type POINT or MULTIPOINT.
+#' @param lines_input object of class sf, sfc or sfg with geometry type LINESTRING or MULTILINESTRING.
+#' @param parallel logical; should the computation be in parallel? Default is `FALSE`. 
+#' Computation in parallel requires installation of `future.apply` and setting a `plan()`.
+#' @return An `sf` object of type LINESTRING containing the minimum distance linestring
+#' connections from each point in `points_input` to nodes in `lines_input`.
 #' @details For each point, the function computes the minimum distance to the nodes of a set of
 #' linestrings and outputs the minimum distance linestring. If the point already intersects
-#' with an existing node, this node is disregarded in the computation.
-#' This guarantees linestrings to have length > 0. If the `points` or `lines` input contains
+#' with an existing node, that particular node is disregarded in the computation.
+#' This guarantees linestrings to have length > 0. If `points_input` or `lines_input` contain
 #' geometries of type MULTIPOINT or MULTILINESTRING, they are converted to POINT and LINESTRING before computing.
 #' @export
-polyg_nearest_node <- function(points, lines, parallel = FALSE) {
-  if (any(!unique(sf::st_geometry_type(lines)) %in% c("LINESTRING", "MULTILINESTRING"))) {
+polyg_nearest_node <- function(points_input, lines_input, parallel = FALSE) {
+  if (any(!unique(sf::st_geometry_type(lines_input)) %in% c("LINESTRING", "MULTILINESTRING"))) {
     stop("Lines input should be LINESTRING or MULTILINESTRING")
   }
-  if (any(unique(sf::st_geometry_type(lines)) %in% c("MULTILINESTRING"))) {
-    input <- sf::st_cast(sf::st_cast(lines, "MULTILINESTRING", warn = FALSE), "LINESTRING", warn = FALSE)
+  if (any(unique(sf::st_geometry_type(lines_input)) %in% c("MULTILINESTRING"))) {
+    lines_input <- sf::st_cast(sf::st_cast(lines_input, "MULTILINESTRING", warn = FALSE), "LINESTRING", warn = FALSE)
   }
-  if (any(!unique(sf::st_geometry_type(points)) %in% c("POINT", "MULTIPOINT"))) {
+  if (any(!unique(sf::st_geometry_type(points_input)) %in% c("POINT", "MULTIPOINT"))) {
     stop("Point input should be POINT or MULTIPOINT")
   }
-  if (any(unique(sf::st_geometry_type(points)) %in% c("MULTIPOINT"))) {
-    input <- sf::st_cast(sf::st_cast(points, "MULTIPOINT", warn = FALSE), "POINT", warn = FALSE)
+  if (any(unique(sf::st_geometry_type(points_input)) %in% c("MULTIPOINT"))) {
+    points_input <- sf::st_cast(sf::st_cast(points_input, "MULTIPOINT", warn = FALSE), "POINT", warn = FALSE)
+  }
+  if (any(!(class(points_input)) %in% c("sfc_POINT", "sfc"))) {
+    points_input <- sf::st_sfc(sf::st_geometry(points_input))
+  }
+  if (sf::st_crs(points_input) != sf::st_crs(lines_input)) {
+    stop("CRS of lines and points input are not the same")
   }
   linestrings_fun <- function(x) {
+    no_intersection <- is.na(as.numeric(unlist(sf::st_intersects(points_input[x], lines_input))[1]))
     nearest_points <- sf::st_nearest_points(
-      points[x],
-      lines %>%
-        dplyr::slice(-c(as.numeric(unlist(
-          sf::st_intersects(
-            points[x],
-            lines
-          )
-        ))))
+      points_input[x],
+      if(no_intersection == TRUE) {
+        lines_input
+      } else {
+        lines_input[(-c(as.numeric(unlist(sf::st_intersects(points_input[x],lines_input))))),]
+      }
     )
     distances <- sf::st_length(nearest_points)
     lines_connection <- nearest_points[which.min(distances)]
@@ -47,17 +53,14 @@ polyg_nearest_node <- function(points, lines, parallel = FALSE) {
   message("Computing nearest nodes")
   lines_process <-
     if (parallel == TRUE) {
-      future.apply::future_lapply(points, linestrings_fun, future.seed = TRUE)
+      future.apply::future_lapply(points_input, linestrings_fun, future.seed = TRUE)
     } else {
-      lapply(points, linestrings_fun)
+      lapply(points_input, linestrings_fun)
     }
-  lines_tmp <- unlist(lines_process, recursive = FALSE)
-  lines_output <- sf::st_sf(lines_tmp, crs = sf::st_crs(lines), geom = NA) %>%
-    dplyr::rename("geometry" = "lines_tmp") %>%
-    dplyr::select(-"geom") %>%
-    sf::st_make_valid() %>%
-    sf::st_collection_extract("LINESTRING")
+  lines_output <- sf::st_as_sf(sf::st_sfc(unlist(lines_process, recursive = FALSE)))
+  lines_output <- rename_geometry(lines_output, "geometry")
+  lines_output <- sf::st_set_crs(lines_output, sf::st_crs(lines_input))
   end_time <- Sys.time()
-  message(paste0("Nearest nodes successfully computed in"), difftime(end_time, start_time, units = "mins"))
+  message(paste("Nearest nodes successfully computed in", round(difftime(end_time, start_time, units = "mins"), 2), "minutes"))
   return(lines_output)
 }

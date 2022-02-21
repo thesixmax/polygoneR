@@ -2,25 +2,26 @@
 % Please edit documentation in R/polyg_contiguity.R
 \name{polyg_contiguity}
 \alias{polyg_contiguity}
-\title{Common contiguities of an sf POLYGON object}
+\title{Common contiguities of an \code{sf} POLYGON object}
 \usage{
-polyg_contiguity(x, contiguity = "queen", fill_empty = FALSE)
+polyg_contiguity(polygons_input, contiguity = "queen", fill_empty = FALSE)
 }
 \arguments{
-\item{x}{object of class sf, sfc or sfg with geometry type POLYGON or MULTIPOLYGON.}
+\item{polygons_input}{object of class sf, sfc or sfg with geometry type POLYGON or MULTIPOLYGON.}
 
-\item{contiguity}{character vector of length 1, which is wither "queen", "rook" or "bishop". Defaults to \code{"queen"}.}
+\item{contiguity}{character; either \code{"queen"}, \code{"rook"} or \code{"bishop"}. Default is \code{"queen"}.}
 
-\item{fill_empty}{logical; should empty indices be filled? Defaults to \code{FALSE}.}
+\item{fill_empty}{logical; should empty indices be filled? Default is \code{FALSE}.}
 }
 \value{
 A sparse index list of contiguities.
 }
 \description{
-Wrapper function for \code{\link[sf:st_relate]{sf::st_relate()}}. Computes a sparse index list of contiguities for an sf POLYGON object.
+Wrapper function for \code{\link[sf:st_relate]{sf::st_relate()}}. Computes a sparse index
+list of contiguities for an \code{sf} POLYGON object.
 }
 \details{
-This function is a wrapper for \code{\link[sf:st_relate]{sf::st_relate()}} with DE9-IM predicate \verb{F***T****} for queen
+Wrapper for \code{\link[sf:st_relate]{sf::st_relate()}} with DE9-IM predicate \verb{F***T****} for queen
 contiguity, \verb{F***1****} for rook contiguity and \verb{F***0****} for bishop contiguity.
 Setting \code{fill_empty} to \code{TRUE} guarantees at least one index per polygon by adding self-neighboring.
 }
