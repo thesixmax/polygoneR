@@ -15,15 +15,15 @@ Execute the following to install the latest available version of `polygone`:
 
 The following is the up to date list of functions available in the package. Please refer to the individual man pages for more information. Extended documentation with examples is work in progress.
 
--   `polyg_contiguity` Compute a sparse index list of contiguities for an `sf` POLYGON object.
+-   `polyg_contiguity` Compute a sparse index list of contiguities for an sf POLYGON object.
 
--   `polyg_leaf_nodes`: Compute leaf nodes of an `sf` LINESTRING object.
+-   `polyg_leaf_nodes`: Compute leaf nodes of an sf LINESTRING object.
 
--   `polyg_nearest_node`: Compute the minimum distance linestring from an `sf` POINT object to the nodes of an `sf` LINESTRING object.
+-   `polyg_nearest_node`: Compute the minimum distance linestring from an sf POINT object to the nodes of an sf LINESTRING object.
 
--   `polyg_dissolve_enclosed`: Dissolve fully or partially enclosed polygons in a `sf` POLYGON object.
+-   `polyg_dissolve_enclosed`: Dissolve fully or partially enclosed polygons in a sf POLYGON object.
 
--   `polyg_merge_conditional`: Iterative merging of polygons in a `sf` POLYGON object according to a condition set by the user.
+-   `polyg_merge_conditional`: Iterative merging of polygons in a sf POLYGON object according to a condition set by the user.
 
 ## Collaborators
 
