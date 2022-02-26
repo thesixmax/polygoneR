@@ -9,7 +9,7 @@ This package depends on the spatial packages [`sf`](https://github.com/r-spatial
 Execute the following to install the latest available version of `polygone`:
 
     library(devtools)
-    instal_github("thesixmax/polygone")
+    install_github("thesixmax/polygone")
 
 ## List of functions
 

@@ -82,13 +82,9 @@ polyg_merge_conditional <- function(polygons_input, contiguity = "rook", conditi
     l_lengths <- vector()
     lines <- list()
     for (i in 1:length(neighbours)) {
-      if(length(neighbours == 1)) {
-        l_lengths[i] <- 1
-      } else {
-        lines[[i]] <- sf::st_intersection(poly_tmp[merge_id, ], poly_tmp[neighbours[i], ])
-        lines[[i]] <- sf::st_make_valid(sf::st_cast(lines[[i]], warn = FALSE))
-        l_lengths[i] <- sf::st_length(lines[[i]]$geometry)
-      }
+      lines[[i]] <- sf::st_intersection(poly_tmp[merge_id, ], poly_tmp[neighbours[i], ])
+      lines[[i]] <- sf::st_make_valid(sf::st_cast(lines[[i]], warn = FALSE))
+      l_lengths[i] <- sf::st_length(lines[[i]]$geometry)
     }
     union_id <- neighbours[which.max(l_lengths)]
     union_poly <- poly_tmp[poly_tmp$id %in% c(merge_id, union_id), ]
