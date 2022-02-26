@@ -2,7 +2,6 @@
 #' @description Compute the minimum distance linestring connection from an `sf` POINT object to nodes of an `sf` LINESTRING object
 #' @importFrom sf st_nearest_points st_intersects st_length st_sf st_crs st_make_valid st_collection_extract
 #' st_set_crs st_crs
-#' @importFrom magrittr %>%
 #' @importFrom future.apply future_lapply
 #' @param points_input object of class sf, sfc or sfg with geometry type POINT or MULTIPOINT.
 #' @param lines_input object of class sf, sfc or sfg with geometry type LINESTRING or MULTILINESTRING.

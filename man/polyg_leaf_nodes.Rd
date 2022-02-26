@@ -4,11 +4,20 @@
 \alias{polyg_leaf_nodes}
 \title{Leaf nodes of an \code{sf} LINESTRING object}
 \usage{
-polyg_leaf_nodes(lines_input, verbose = FALSE)
+polyg_leaf_nodes(
+  lines_input,
+  parallel = FALSE,
+  n_cores = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{lines_input}{object of class sf, sfc or sfg with geometry type
 LINESTRING or MULTILINESTRING.}
+
+\item{parallel}{logical; should the computation be in parallel? Default is \code{FALSE}.}
+
+\item{n_cores}{integer; number of cores if run in parallel. Should match number of workers set with \code{\link[future:plan]{future::plan()}}.}
 
 \item{verbose}{logical; should computing time be printed?}
 }

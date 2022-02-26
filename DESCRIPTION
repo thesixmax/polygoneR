@@ -15,5 +15,4 @@ RoxygenNote: 7.1.2
 Imports:
     future.apply,
     lwgeom,
-    magrittr,
     sf
