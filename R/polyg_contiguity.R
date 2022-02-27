@@ -1,5 +1,5 @@
 #' Common contiguities of an `sf` POLYGON object
-#' @description Wrapper function for [sf::st_relate()]. Computes a sparse index 
+#' @description Wrapper function for [sf::st_relate()]. Computes a sparse index
 #' list of contiguities for an `sf` POLYGON object.
 #' @importFrom sf st_geometry_type st_relate
 #' @param polygons_input object of class sf, sfc or sfg with geometry type POLYGON or MULTIPOLYGON.

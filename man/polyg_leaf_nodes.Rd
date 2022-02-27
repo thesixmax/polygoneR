@@ -19,7 +19,7 @@ LINESTRING or MULTILINESTRING.}
 
 \item{n_cores}{integer; number of cores if run in parallel. Should match number of workers set with \code{\link[future:plan]{future::plan()}}.}
 
-\item{verbose}{logical; should computing time be printed?}
+\item{verbose}{logical; should computing time be printed? Default is \code{FALSE}.}
 }
 \value{
 An sfc object of type POINT containing all leaf nodes of \code{lines_input}.

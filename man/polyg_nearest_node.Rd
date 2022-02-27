@@ -4,15 +4,26 @@
 \alias{polyg_nearest_node}
 \title{Shortest linestring connections from an \code{sf} POINT object to nodes of a \code{sf} LINESTRING object}
 \usage{
-polyg_nearest_node(points_input, lines_input, parallel = FALSE)
+polyg_nearest_node(
+  points_input,
+  lines_input,
+  buffer = NULL,
+  parallel = FALSE,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{points_input}{object of class sf, sfc or sfg with geometry type POINT or MULTIPOINT.}
 
 \item{lines_input}{object of class sf, sfc or sfg with geometry type LINESTRING or MULTILINESTRING.}
 
+\item{buffer}{numeric; maximum distance from point to compute distance to nodes.
+Default is NULL, i.e. the distance to all nodes in the linestring object are computed.}
+
 \item{parallel}{logical; should the computation be in parallel? Default is \code{FALSE}.
 Computation in parallel requires installation of \code{future.apply} and setting a \code{plan()}.}
+
+\item{verbose}{logical; should computing time be printed? Default is \code{FALSE}.}
 }
 \value{
 An \code{sf} object of type LINESTRING containing the minimum distance linestring

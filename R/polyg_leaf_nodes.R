@@ -8,7 +8,7 @@
 #' LINESTRING or MULTILINESTRING.
 #' @param parallel logical; should the computation be in parallel? Default is `FALSE`.
 #' @param n_cores integer; number of cores if run in parallel. Should match number of workers set with [future::plan()].
-#' @param verbose logical; should computing time be printed?
+#' @param verbose logical; should computing time be printed? Default is `FALSE`.
 #' @return An sfc object of type POINT containing all leaf nodes of `lines_input`.
 #' @details Function to compute leaf nodes, i.e. nodes which do no intersect
 #' with other nodes in the `sf` LINESTRING object. If `lines_input` contains geometries
@@ -25,9 +25,6 @@ polyg_leaf_nodes <- function(lines_input, parallel = FALSE, n_cores = NULL, verb
     stop("Please select number of cores when computing in parallel")
   }
   start_time <- Sys.time()
-  if (verbose == TRUE) {
-    message("Computing leaf nodes")
-  }
   endpoints <- c(lwgeom::st_startpoint(lines_input), lwgeom::st_endpoint(lines_input))
   if (parallel == TRUE) {
     split_vector <- rep(1:n_cores, each = nrow(lines_input) / n_cores, length.out = nrow(lines_input))

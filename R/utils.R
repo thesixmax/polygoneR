@@ -14,7 +14,7 @@ contiguity_pattern_fun <- function(input) {
   return(contiguity_pattern)
 }
 
-rename_geometry <- function(geom, name){
+rename_geometry <- function(geom, name) {
   current <- attr(geom, "sf_column")
   names(geom)[names(geom) == current] <- name
   sf::st_geometry(geom) <- name
