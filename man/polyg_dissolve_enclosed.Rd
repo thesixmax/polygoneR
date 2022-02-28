@@ -4,7 +4,12 @@
 \alias{polyg_dissolve_enclosed}
 \title{Dissolve enclosed polygons in a sf POLYGON object}
 \usage{
-polyg_dissolve_enclosed(polygons_input, contiguity = "rook", tolerance = 0)
+polyg_dissolve_enclosed(
+  polygons_input,
+  contiguity = "rook",
+  tolerance = 0,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{polygons_input}{object of class sf, sfc or sfg with geometry type POLYGON or MULTIPOLYGON.}
@@ -13,6 +18,8 @@ polyg_dissolve_enclosed(polygons_input, contiguity = "rook", tolerance = 0)
 
 \item{tolerance}{numeric; length in units to tolerate when determining if a polygon is enclosed.
 Default is 0 (fully enclosed).}
+
+\item{verbose}{logical; should number of dissolved polygons be printed? Default is \code{FALSE}.}
 }
 \value{
 An sf object of type POLYGON with enclosed polygons dissolved.

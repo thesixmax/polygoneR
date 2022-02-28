@@ -7,12 +7,13 @@
 #' @param contiguity character; either `"rook"` or `"queen"`. Default is `"rook"`.
 #' @param tolerance numeric; length in units to tolerate when determining if a polygon is enclosed.
 #' Default is 0 (fully enclosed).
+#' @param verbose logical; should number of dissolved polygons be printed? Default is `FALSE`.
 #' @return An sf object of type POLYGON with enclosed polygons dissolved.
 #' @details An enclosed polygon is defined as having only one neighbor which shares all of the polygon border.
 #' Setting tolerance > 0 allows for merging partially enclosed polygons, i.e. polygons where small portions
 #' of the polygon border is not shared with any other polygon.
 #' @export
-polyg_dissolve_enclosed <- function(polygons_input, contiguity = "rook", tolerance = 0) {
+polyg_dissolve_enclosed <- function(polygons_input, contiguity = "rook", tolerance = 0, verbose = FALSE) {
   if (any(!unique(sf::st_geometry_type(polygons_input)) %in% c("POLYGON", "MULTIPOLYGON"))) {
     stop("Input should be POLYGON or MULTIPOLYGON")
   }
@@ -61,6 +62,8 @@ polyg_dissolve_enclosed <- function(polygons_input, contiguity = "rook", toleran
   merged_poly <- rename_geometry(Reduce(rbind, merge_list), "geometry")
   poly_bind <- poly_tmp[!(poly_tmp$id %in% c(merge_id, union_id)), ]
   poly_bind <- unique(sf::st_make_valid(rbind(poly_bind["geometry"], merged_poly["geometry"])))
-  message(paste("Merging complete. Polygons dissolved:", nrow(polygons_input) - nrow(poly_bind)))
+  if (verbose == TRUE) {
+    message(paste("Merging complete. Polygons dissolved:", nrow(polygons_input) - nrow(poly_bind)))
+  }
   return(poly_bind)
 }
