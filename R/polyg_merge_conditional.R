@@ -108,6 +108,8 @@ polyg_merge_conditional <- function(polygons_input, contiguity = "rook", conditi
     )
     merge_count <- sum(poly_tmp$merge_var)
   }
-  message(paste("Merging complete. Final number of polygons:", nrow(poly_tmp)))
+  if (verbose == TRUE) {
+    message(paste("Merging complete. Final number of polygons:", nrow(poly_tmp)))
+  }
   return(poly_tmp)
 }
