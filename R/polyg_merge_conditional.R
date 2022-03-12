@@ -49,22 +49,21 @@ polyg_merge_conditional <- function(polygons_input, contiguity = "rook", conditi
   poly_tmp <- polygons_input
   poly_tmp$id <- seq.int(nrow(poly_tmp))
   poly_tmp$condition_var <- condition_fun(poly_tmp)
-  poly_tmp$self_neighbour <- ifelse(unlist(lapply(
+  poly_tmp$self_neighbour <- ifelse(lengths(
     polyg_contiguity(poly_tmp,
-      contiguity = contiguity,
-      fill_empty = TRUE
-    ),
-    `[[`, 1
-  )) == poly_tmp$id, 1, 0)
+                     contiguity = contiguity,
+                     fill_empty = FALSE
+    )
+  ) > 0, 0, 1)
   poly_tmp$merge_var <- 0
   poly_tmp$merge_var <- ifelse(poly_tmp$self_neighbour == 1, 0,
-    ifelse(poly_tmp$condition_var < threshold, 1, 0)
+                               ifelse(poly_tmp$condition_var < threshold, 1, 0)
   )
-
+  
   merge_count <- sum(poly_tmp$merge_var)
   breakpoint <- ifelse(breakpoint < 1 & breakpoint > 0,
-    as.integer(ceiling(nrow(poly_tmp) * breakpoint)),
-    as.integer(breakpoint)
+                       as.integer(ceiling(nrow(poly_tmp) * breakpoint)),
+                       as.integer(breakpoint)
   )
   if (verbose == TRUE) {
     message(paste("Expected polygons to merge:", merge_count - breakpoint))
@@ -78,7 +77,7 @@ polyg_merge_conditional <- function(polygons_input, contiguity = "rook", conditi
     merge_poly <- poly_tmp[poly_tmp$merge_var == 1, ]
     merge_poly <- merge_poly[merge_poly$condition_var == min(merge_poly$condition_var), ][1, ]
     merge_id <- merge_poly$id[1]
-    neighbours <- polyg_contiguity(poly_tmp, contiguity = contiguity, fill_empty = TRUE)[[merge_id]]
+    neighbours <- unlist(sf::st_relate(poly_tmp[merge_id,], poly_tmp, pattern = contiguity_pattern_fun(contiguity)))
     l_lengths <- vector()
     lines <- list()
     for (i in 1:length(neighbours)) {
@@ -90,22 +89,19 @@ polyg_merge_conditional <- function(polygons_input, contiguity = "rook", conditi
     union_poly <- poly_tmp[poly_tmp$id %in% c(merge_id, union_id), ]
     union_poly <- sf::st_as_sf(sf::st_union(union_poly))
     union_poly <- rename_geometry(union_poly, "geometry")
-    poly_bind <- poly_tmp[!(poly_tmp$id %in% c(merge_poly$id, union_id)), ]
-    poly_bind <- rbind(poly_bind["geometry"], union_poly["geometry"])
-    poly_tmp <- sf::st_make_valid(poly_bind)
-    poly_tmp$id <- seq.int(nrow(poly_tmp))
-    poly_tmp$condition_var <- condition_fun(poly_tmp)
-    poly_tmp$self_neighbour <- ifelse(unlist(lapply(
-      polyg_contiguity(poly_tmp,
-        contiguity = contiguity,
-        fill_empty = TRUE
-      ),
-      `[[`, 1
-    )) == poly_tmp$id, 1, 0)
-    poly_tmp$merge_var <- 0
-    poly_tmp$merge_var <- ifelse(poly_tmp$self_neighbour == 1, 0,
-      ifelse(poly_tmp$condition_var < threshold, 1, 0)
+    union_poly$id <- NA
+    union_poly$condition_var <- condition_fun(union_poly)
+    union_poly$self_neighbour <- ifelse(
+      unlist(lengths(st_relate(union_poly, poly_tmp, pattern = contiguity_pattern_fun(contiguity)))) > 0,
+      0, 1
     )
+    union_poly$merge_var <- ifelse(union_poly$self_neighbour == 1, 0,
+                                   ifelse(union_poly$condition_var < threshold, 1, 0)
+    )
+    poly_bind <- poly_tmp[!(poly_tmp$id %in% c(merge_poly$id, union_id)), 
+                          c("geometry", "id", "condition_var", "self_neighbour", "merge_var")]
+    poly_tmp <- sf::st_make_valid(rbind(poly_bind, union_poly))
+    poly_tmp$id <- seq.int(nrow(poly_tmp))
     merge_count <- sum(poly_tmp$merge_var)
   }
   if (verbose == TRUE) {
