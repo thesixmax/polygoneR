@@ -33,37 +33,53 @@ polyg_dissolve_enclosed <- function(polygons_input, contiguity = "rook", toleran
   }
   merge_id <- unlist(merge_tmp)
   union_id <- unlist(union_tmp)
-  lines <- list()
-  l_lengths <- vector()
-  perimeters <- vector()
-  enclosed <- vector()
-  for (i in 1:length(merge_id)) {
-    lines[[i]] <- sf::st_intersection(poly_tmp[merge_id[i], ], poly_tmp[union_id[i], ])
-    lines[[i]] <- sf::st_make_valid(sf::st_cast(lines[[i]], warn = FALSE))
-    l_lengths[i] <- sf::st_length(lines[[i]]$geometry)
-    perimeters[i] <- lwgeom::st_perimeter(poly_tmp[merge_id[i], ])
-    ifelse(perimeters[i] - l_lengths[i] <= tolerance,
-      enclosed[i] <- TRUE,
-      enclosed[i] <- FALSE
-    )
+  if (length(merge_id) == 0) {
+    if (verbose == TRUE) {
+      message("No enclosed polygons to dissolve")
+    }
+    return(poly_tmp)
+  } else {
+    lines <- list()
+    l_lengths <- vector()
+    perimeters <- vector()
+    enclosed <- vector()
+    for (i in 1:length(merge_id)) {
+      lines[[i]] <- sf::st_intersection(poly_tmp[merge_id[i], ], poly_tmp[union_id[i], ])
+      lines[[i]] <- sf::st_make_valid(sf::st_cast(lines[[i]], warn = FALSE))
+      l_lengths[i] <- sf::st_length(lines[[i]]$geometry)
+      perimeters[i] <- lwgeom::st_perimeter(poly_tmp[merge_id[i], ])
+      ifelse(perimeters[i] - l_lengths[i] <= tolerance,
+             enclosed[i] <- TRUE,
+             enclosed[i] <- FALSE
+      )
+    }
+    merge_id <- merge_id[enclosed == TRUE]
+    union_id <- union_id[enclosed == TRUE]
+    
+    if (length(merge_id) == 0) {
+      if (verbose == TRUE) {
+        message("No enclosed polygons to dissolve")
+      }
+      return(poly_tmp)
+    } else {
+      union_unique <- unique(union_id)
+      union_list <- list()
+      for (i in 1:length(union_unique)) {
+        union_list[[i]] <- c(union_unique[i], merge_id[union_id == union_unique[i]])
+      }
+      merge_list <- list()
+      for (i in 1:length(union_list)) {
+        poly_merge <- poly_tmp[poly_tmp$id %in% union_list[[i]], ]
+        merge_list[[i]] <- sf::st_as_sf(sf::st_union(poly_merge))
+      }
+      merged_poly <- rename_geometry(Reduce(rbind, merge_list), "geometry")
+      poly_bind <- poly_tmp[!(poly_tmp$id %in% c(merge_id, union_id)), ]
+      poly_bind <- unique(sf::st_make_valid(rbind(poly_bind["geometry"], merged_poly["geometry"])))
+      if (verbose == TRUE) {
+        message(paste("Merging complete. Polygons dissolved:", nrow(polygons_input) - nrow(poly_bind)))
+      }
+      return(poly_bind)
+    }
   }
-  merge_id <- merge_id[enclosed == TRUE]
-  union_id <- union_id[enclosed == TRUE]
-  union_unique <- unique(union_id)
-  union_list <- list()
-  for (i in 1:length(union_unique)) {
-    union_list[[i]] <- c(union_unique[i], merge_id[union_id == union_unique[i]])
-  }
-  merge_list <- list()
-  for (i in 1:length(union_list)) {
-    poly_merge <- poly_tmp[poly_tmp$id %in% union_list[[i]], ]
-    merge_list[[i]] <- sf::st_as_sf(sf::st_union(poly_merge))
-  }
-  merged_poly <- rename_geometry(Reduce(rbind, merge_list), "geometry")
-  poly_bind <- poly_tmp[!(poly_tmp$id %in% c(merge_id, union_id)), ]
-  poly_bind <- unique(sf::st_make_valid(rbind(poly_bind["geometry"], merged_poly["geometry"])))
-  if (verbose == TRUE) {
-    message(paste("Merging complete. Polygons dissolved:", nrow(polygons_input) - nrow(poly_bind)))
-  }
-  return(poly_bind)
 }
+
