@@ -1,6 +1,6 @@
 Package: polygone
 Type: Package
-Title: Functions for manipulating polygon and linestring data in R
+Title: Manipulating polygon and linestring data in R
 Version: 0.1.0
 Author: Sixten Maxmillian Thestrup
 Maintainer: Sixten Maximillian Thestrup <smth@build.aau.dk>
