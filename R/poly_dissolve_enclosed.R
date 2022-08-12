@@ -6,7 +6,7 @@
 #' @param polygons_input object of class sf, sfc or sfg with geometry type POLYGON or MULTIPOLYGON.
 #' @param contiguity character; either `"rook"` or `"queen"`. Default is `"rook"`.
 #' @param tolerance numeric; length in units to tolerate when determining if a polygon is enclosed.
-#' Default is 0 (fully enclosed).
+#' Default is 0 (i.e. fully enclosed).
 #' @param verbose logical; should number of dissolved polygons be printed? Default is `FALSE`.
 #' @return An sf object of type POLYGON with enclosed polygons dissolved.
 #' @details An enclosed polygon is defined as having only one neighbor which shares all of the polygon border.
