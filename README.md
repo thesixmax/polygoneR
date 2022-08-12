@@ -1,4 +1,4 @@
-# **polygone:** manipulating polygon and linestring data in R
+# **polygone:** manipulate polygon and linestring data in R
 
 This package is an extension of [`sf`](https://github.com/r-spatial/sf) and [`lwgeom`](https://github.com/r-spatial/lwgeom) for spatial analysis in R. The aim is to simplify common tasks carried out on spatial data such as computing contiguities, determine leaf nodes and conditional merging of polygons.
 
