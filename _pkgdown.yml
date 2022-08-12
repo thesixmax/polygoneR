@@ -1,5 +1,5 @@
 url: https://thesixmax.github.io/polygone/
 template:
-  bootswatch: cosmo
+  bootswatch: simplex
   bootstrap: 5
 
