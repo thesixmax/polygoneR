@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://thesixmax.github.io/polygone/404.html</loc>
+  </url>
+  <url>
+    <loc>https://thesixmax.github.io/polygone/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://thesixmax.github.io/polygone/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://thesixmax.github.io/polygone/index.html</loc>
+  </url>
+  <url>
+    <loc>https://thesixmax.github.io/polygone/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://thesixmax.github.io/polygone/reference/polyg_contiguity.html</loc>
+  </url>
+  <url>
+    <loc>https://thesixmax.github.io/polygone/reference/polyg_dissolve_enclosed.html</loc>
+  </url>
+  <url>
+    <loc>https://thesixmax.github.io/polygone/reference/polyg_leaf_nodes.html</loc>
+  </url>
+  <url>
+    <loc>https://thesixmax.github.io/polygone/reference/polyg_merge_conditional.html</loc>
+  </url>
+  <url>
+    <loc>https://thesixmax.github.io/polygone/reference/polyg_nearest_node.html</loc>
+  </url>
+</urlset>
