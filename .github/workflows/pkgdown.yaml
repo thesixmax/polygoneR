@@ -35,8 +35,6 @@ jobs:
           
       - name: Install dependencies
         run: 
-          remotes::install_deps(dependencies = TRUE)
-          install.packages("pkgdown", type = "binary")
           install.packages("preferably")
 
       - name: Build site
