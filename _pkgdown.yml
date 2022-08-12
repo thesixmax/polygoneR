@@ -1,5 +1,5 @@
 url: https://thesixmax.github.io/polygone/
 template:
-  package: preferably
+  bootswatch: flatly
   bootstrap: 5
 
