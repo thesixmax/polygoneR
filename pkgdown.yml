@@ -2,8 +2,5 @@ pandoc: 2.14.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-08-12T09:11Z
-urls:
-  reference: https://thesixmax.github.io/polygone/reference
-  article: https://thesixmax.github.io/polygone/articles
+last_built: 2022-08-12T10:11Z
 
