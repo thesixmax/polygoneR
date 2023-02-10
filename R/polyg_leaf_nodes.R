@@ -17,6 +17,6 @@ polyg_leaf_nodes <- function(input) {
   ls <- polyg_cast_substring(sf::st_sfc(sf::st_geometry(linestring)))
   nodes <- sf::st_union(sf::st_cast(ls, "POINT"), by_feature = TRUE)
   n_inter <- lengths(sf::st_intersects(nodes, ls))
-  leaf_nodes <- rename_geometry(sf::st_sf(nodes[which(n_inter == 1)]), "geometry")
+  leaf_nodes <- polyg_rename_geom(sf::st_sf(nodes[which(n_inter == 1)]), "geometry")
   return(leaf_nodes)
 }

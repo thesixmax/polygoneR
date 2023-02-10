@@ -14,13 +14,6 @@ contiguity_pattern_fun <- function(input) {
   return(contiguity_pattern)
 }
 
-rename_geometry <- function(geom, name) {
-  current <- attr(geom, "sf_column")
-  names(geom)[names(geom) == current] <- name
-  sf::st_geometry(geom) <- name
-  return(geom)
-}
-
 neighbours_fun <- function(contiguity_list) {
   list <- unlist(lapply(contiguity_list, length))
   return(list)

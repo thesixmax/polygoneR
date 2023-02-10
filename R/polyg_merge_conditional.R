@@ -88,7 +88,7 @@ polyg_merge_conditional <- function(polygons_input, contiguity = "rook", conditi
     union_id <- neighbours[which.max(l_lengths)]
     union_poly <- poly_tmp[poly_tmp$id %in% c(merge_id, union_id), ]
     union_poly <- sf::st_as_sf(sf::st_union(union_poly))
-    union_poly <- rename_geometry(union_poly, "geometry")
+    union_poly <- polyg_rename_geom(input = union_poly, geom_name = "geometry")
     union_poly$id <- NA
     union_poly$condition_var <- condition_fun(union_poly)
     union_poly$self_neighbour <- ifelse(

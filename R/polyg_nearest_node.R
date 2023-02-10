@@ -65,7 +65,7 @@ polyg_nearest_node <- function(points_input, lines_input, buffer = NULL, paralle
       lapply(points, linestrings_fun)
     }
   lines_output <- sf::st_as_sf(sf::st_sfc(unlist(lines_process, recursive = FALSE)))
-  lines_output <- rename_geometry(lines_output, "geometry")
+  lines_output <- polyg_rename_geom(input = lines_output, geom_name = "geometry")
   lines_output <- sf::st_set_crs(lines_output, sf::st_crs(lines_input))
   end_time <- Sys.time()
   if (verbose == TRUE) {
