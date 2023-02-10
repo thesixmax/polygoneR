@@ -4,17 +4,17 @@
 \alias{polyg_cast_substring}
 \title{Cast an \code{sf} object to substring}
 \usage{
-polyg_cast_substring(input)
+polyg_cast_substring(input_lines)
 }
 \arguments{
-\item{input}{object of class sf or sfc with geometry type MULTILINESTRING or LINESTRING.}
+\item{input_lines}{object of class sf or sfc with geometry type MULTILINESTRING or LINESTRING.}
 }
 \value{
-An sf or sfc object of type LINESTRING containing the substrings of \code{input}.
+An sf or sfc object of type LINESTRING containing the substrings of \code{input_lines}.
 }
 \description{
 Helper function for computing the substrings of an \code{sf} MULTILINESTRING or LINESTRING object.
 }
 \details{
-Function to compute the substrings of an input object. The output is always LINESTRING of class matching the \code{input} class.
+The output is always LINESTRING of class matching the \code{input_lines} class.
 }

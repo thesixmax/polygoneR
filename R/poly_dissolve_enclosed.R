@@ -72,7 +72,7 @@ polyg_dissolve_enclosed <- function(polygons_input, contiguity = "rook", toleran
         poly_merge <- poly_tmp[poly_tmp$id %in% union_list[[i]], ]
         merge_list[[i]] <- sf::st_as_sf(sf::st_union(poly_merge))
       }
-      merged_poly <- polyg_rename_geom(input = Reduce(rbind, merge_list), geom_name = "geometry")
+      merged_poly <- polyg_rename_geom(input_sf = Reduce(rbind, merge_list), geom_name = "geometry")
       poly_bind <- poly_tmp[!(poly_tmp$id %in% c(merge_id, union_id)), ]
       poly_bind <- unique(sf::st_make_valid(rbind(poly_bind["geometry"], merged_poly["geometry"])))
       if (verbose == TRUE) {

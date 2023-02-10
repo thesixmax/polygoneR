@@ -4,10 +4,10 @@
 \alias{polyg_leaf_nodes}
 \title{Leaf nodes of an \code{sf} LINESTRING object}
 \usage{
-polyg_leaf_nodes(input)
+polyg_leaf_nodes(input_lines)
 }
 \arguments{
-\item{input}{object of class sf of type LINESTRING or MULTILINESTRING.}
+\item{input_lines}{object of class sf of type LINESTRING or MULTILINESTRING.}
 }
 \value{
 An sf object of type POINT containing all leaf nodes of \code{input}.

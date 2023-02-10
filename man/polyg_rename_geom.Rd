@@ -4,10 +4,10 @@
 \alias{polyg_rename_geom}
 \title{Rename the geometry of an \code{sf} object}
 \usage{
-polyg_rename_geom(input, geom_name = "geometry")
+polyg_rename_geom(input_sf, geom_name = "geometry")
 }
 \arguments{
-\item{input}{object of class sf}
+\item{input_sf}{object of class sf}
 
 \item{geom_name}{desired name for the geometry column. Defaults to "geometry"}
 }

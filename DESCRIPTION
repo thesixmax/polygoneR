@@ -1,7 +1,7 @@
 Package: polygone
 Type: Package
 Title: Manipulate polygon and linestring data in R
-Version: 0.1.0
+Version: 0.2.0
 Author: Sixten Maxmillian Thestrup
 Maintainer: Sixten Maximillian Thestrup <smth@build.aau.dk>
 Description: This package is an extension of existing packages such as sf and
@@ -13,7 +13,6 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports:
-    future.apply,
     lwgeom,
     sf
 URL: https://thesixmax.github.io/polygone/
