@@ -17,7 +17,7 @@ polyg_dissolve_enclosed(
 \item{contiguity}{character; either \code{"rook"} or \code{"queen"}. Default is \code{"rook"}.}
 
 \item{tolerance}{numeric; length in units to tolerate when determining if a polygon is enclosed.
-Default is 0 (fully enclosed).}
+Default is 0 (i.e. fully enclosed).}
 
 \item{verbose}{logical; should number of dissolved polygons be printed? Default is \code{FALSE}.}
 }

@@ -4,31 +4,19 @@
 \alias{polyg_leaf_nodes}
 \title{Leaf nodes of an \code{sf} LINESTRING object}
 \usage{
-polyg_leaf_nodes(
-  lines_input,
-  parallel = FALSE,
-  n_cores = NULL,
-  verbose = FALSE
-)
+polyg_leaf_nodes(input)
 }
 \arguments{
-\item{lines_input}{object of class sf, sfc or sfg with geometry type
-LINESTRING or MULTILINESTRING.}
-
-\item{parallel}{logical; should the computation be in parallel? Default is \code{FALSE}.}
-
-\item{n_cores}{integer; number of cores if run in parallel. Should match number of workers set with \code{\link[future:plan]{future::plan()}}.}
-
-\item{verbose}{logical; should computing time be printed? Default is \code{FALSE}.}
+\item{input}{object of class sf of type LINESTRING or MULTILINESTRING.}
 }
 \value{
-An sfc object of type POINT containing all leaf nodes of \code{lines_input}.
+An sf object of type POINT containing all leaf nodes of \code{input}.
 }
 \description{
-Helper function for computing leaf nodes of an \code{sf} LINESTRING object.
+Helper function for computing leaf nodes of an \code{sf} MULTILINESTRING or LINESTRING object.
 }
 \details{
 Function to compute leaf nodes, i.e. nodes which do no intersect
-with other nodes in the \code{sf} LINESTRING object. If \code{lines_input} contains geometries
+with other nodes in the \code{sf} LINESTRING object. If \code{input} contains geometries
 of type MULTILINESTRING, they are cast to LINESTRING before computing.
 }
