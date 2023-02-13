@@ -2,7 +2,7 @@
 % Please edit documentation in R/polyg_rename_geom.R
 \name{polyg_rename_geom}
 \alias{polyg_rename_geom}
-\title{Rename the geometry of an \code{sf} object}
+\title{Rename the geometry column of an \code{sf} object}
 \usage{
 polyg_rename_geom(input_sf, geom_name = "geometry")
 }

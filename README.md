@@ -1,10 +1,10 @@
 # **polygone:** manipulate polygon and linestring data in R
 
-This package is an extension of [`sf`](https://github.com/r-spatial/sf) and [`lwgeom`](https://github.com/r-spatial/lwgeom) for spatial analysis in R. The aim is to simplify common tasks carried out on spatial data such as computing contiguities, determine leaf nodes and conditional merging of polygons.
+This package is collection of helper functions and new tools built on [`sf`](https://github.com/r-spatial/sf) for spatial analysis in R. The aim is to simplify common tasks carried out on spatial data such as computing angles, leaf nodes and lines to nearest node.
 
 ## Installation
 
-This package depends on the spatial packages [`sf`](https://github.com/r-spatial/sf) and [`lwgeom`](https://github.com/r-spatial/lwgeom). Additionally, [`future.apply`](https://github.com/HenrikBengtsson/future.apply) is optional for processing certain functions in parallel. It is recommended to install these packages first.
+This package depends on the spatial package [`sf`](https://github.com/r-spatial/sf). It is recommended to install this package first.
 
 Execute the following to install the latest available version of `polygone`:
 
@@ -13,17 +13,19 @@ Execute the following to install the latest available version of `polygone`:
 
 ## List of functions
 
-The following is the up to date list of functions available in the package. Please refer to the individual man pages for more information. Extended documentation with examples is work in progress.
+The following is the up to date list of functions available in the package. Please refer to the individual man pages for more information. Extended documentation, including examples, is work in progress.
 
--   `polyg_contiguity` Compute a sparse index list of contiguities for an sf POLYGON object.
+-   `polyg_angles` Minimum and maximum angles between two sf LINESTRING objects.
 
--   `polyg_leaf_nodes`: Compute leaf nodes of an sf LINESTRING object.
+-   `polyg_cast_substring`: Cast an sf object to substring.
 
--   `polyg_nearest_node`: Compute the minimum distance linestring from an sf POINT object to the nodes of an sf LINESTRING object.
+-   `polyg_contiguity`: Common contiguities of an sf POLYGON object.
 
--   `polyg_dissolve_enclosed`: Dissolve fully or partially enclosed polygons in a sf POLYGON object.
+-   `polyg_leaf_nodes`: Leaf nodes of an sf LINESTRING object.
 
--   `polyg_merge_conditional`: Iterative merging of polygons in a sf POLYGON object according to a condition set by the user.
+-   `polyg_line_nearest_node`: Minimum distance linestring from an sf POINT object to nodes of a sf LINESTRING object.
+
+-   `polyg_rename_geom`: Rename the geometry column of an sf object.
 
 ## Collaborators
 

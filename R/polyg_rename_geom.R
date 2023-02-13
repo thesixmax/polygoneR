@@ -1,4 +1,4 @@
-#' Rename the geometry of an `sf` object
+#' Rename the geometry column of an `sf` object
 #' @description Simple renaming function for the geometry column of sf objects
 #' @importFrom sf st_geometry
 #' @param input_sf object of class sf

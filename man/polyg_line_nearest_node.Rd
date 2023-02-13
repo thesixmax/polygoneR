@@ -2,7 +2,7 @@
 % Please edit documentation in R/polyg_line_nearest_node.R
 \name{polyg_line_nearest_node}
 \alias{polyg_line_nearest_node}
-\title{Shortest linestring connections from an \code{sf} POINT object to nodes of a \code{sf} LINESTRING object}
+\title{Minimum distance linestring from an \code{sf} POINT object to nodes of a \code{sf} LINESTRING object}
 \usage{
 polyg_line_nearest_node(
   input_points,

@@ -13,10 +13,6 @@ contiguity_pattern_fun <- function(input) {
   }
   return(contiguity_pattern)
 }
-neighbours_fun <- function(contiguity_list) {
-  list <- unlist(lapply(contiguity_list, length))
-  return(list)
-}
 angle_fun <- function(a, b, c) {
   vector1 <- c(a[1] - b[1], a[2] - b[2])
   vector2 <- c(c[1] - b[1], c[2] - b[2])

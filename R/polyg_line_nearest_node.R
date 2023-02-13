@@ -1,4 +1,4 @@
-#' Shortest linestring connections from an `sf` POINT object to nodes of a `sf` LINESTRING object
+#' Minimum distance linestring from an `sf` POINT object to nodes of a `sf` LINESTRING object
 #' @description Compute the minimum distance linestring connection from an `sf` POINT object to nodes of an `sf` LINESTRING object
 #' @importFrom sf st_geometry_type st_intersection st_geometry st_cast st_collection_extract 
 #' st_nearest_feature st_sfc st_union st_crs st_equals

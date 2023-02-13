@@ -4,15 +4,13 @@ Title: Manipulate polygon and linestring data in R
 Version: 0.2.0
 Author: Sixten Maxmillian Thestrup
 Maintainer: Sixten Maximillian Thestrup <smth@build.aau.dk>
-Description: This package is an extension of existing packages such as sf and
-    lwgeom. The aim is to simplify common tasks carried out on spatial data such
-    as computing contiguities, determine leaf nodes and conditional merging of polygons.
+Description: This package is an extension of existing packages such as sf. 
+    The aim is to create helper functions for common tasks carried out on spatial data.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports:
-    lwgeom,
     sf
 URL: https://thesixmax.github.io/polygone/
