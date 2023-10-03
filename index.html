@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="This package is an extension of existing packages such as sf. 
     The aim is to create helper functions for common tasks carried out on spatial data.">
-<title>Manipulate polygon and linestring data in R • polygone</title>
+<title>Manipulate polygon and linestring data in R • polygoneR</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -26,9 +26,9 @@
 
     <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
-    <a class="navbar-brand me-2" href="index.html">polygone</a>
+    <a class="navbar-brand me-2" href="index.html">polygoneR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,8 +53,8 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="polygone-manipulate-polygon-and-linestring-data-in-r">
-<strong>polygone:</strong> manipulate polygon and linestring data in R<a class="anchor" aria-label="anchor" href="#polygone-manipulate-polygon-and-linestring-data-in-r"></a>
+<div class="page-header"><h1 id="polygoner-manipulate-polygon-and-linestring-data-in-r">
+<strong>polygoneR:</strong> manipulate polygon and linestring data in R<a class="anchor" aria-label="anchor" href="#polygoner-manipulate-polygon-and-linestring-data-in-r"></a>
 </h1></div>
 <p>This package is collection of helper functions and new tools built on <a href="https://github.com/r-spatial/sf" class="external-link"><code>sf</code></a> for spatial analysis in R. The aim is to simplify common tasks carried out on spatial data such as computing angles, leaf nodes and lines to nearest node.</p>
 <div class="section level2">
@@ -70,26 +70,18 @@
 </h2>
 <p>The following is the up to date list of functions available in the package. Please refer to the individual man pages for more information. Extended documentation, including examples, is work in progress.</p>
 <ul>
-<li><p><code>polyg_angles</code> Minimum and maximum angles between two sf LINESTRING objects.</p></li>
+<li><p><code>polyg_angles</code> Calculate the minimum and maximum angles between two sf LINESTRING objects.</p></li>
 <li><p><code>polyg_cast_substring</code>: Cast an sf object to substring.</p></li>
 <li><p><code>polyg_contiguity</code>: Common contiguities of an sf POLYGON object.</p></li>
-<li><p><code>polyg_leaf_nodes</code>: Leaf nodes of an sf LINESTRING object.</p></li>
-<li><p><code>polyg_line_nearest_node</code>: Minimum distance linestring from an sf POINT object to nodes of a sf LINESTRING object.</p></li>
+<li><p><code>polyg_leaf_nodes</code>: Identify leaf nodes of an sf LINESTRING object.</p></li>
+<li><p><code>polyg_line_nearest_node</code>: Calculate the minimum distance linestring from an sf POINT object to nodes of a sf LINESTRING object.</p></li>
 <li><p><code>polyg_rename_geom</code>: Rename the geometry column of an sf object.</p></li>
 </ul>
 </div>
 <div class="section level2">
-<h2 id="collaborators">Collaborators<a class="anchor" aria-label="anchor" href="#collaborators"></a>
-</h2>
-<p>urbanLAB <a href="https://www.en.build.aau.dk" class="external-link">(Department of the Built Environment, Aalborg University)</a></p>
-<p><a href="https://dataclinic.twosigma.com" class="external-link">Data Clinic (Two Sigma)</a></p>
-</div>
-<div class="section level2">
 <h2 id="acknowledgement">Acknowledgement<a class="anchor" aria-label="anchor" href="#acknowledgement"></a>
 </h2>
-<p>This package is part of a research project which gratefully acknowledges financial support from:</p>
-<p><a href="https://data.org" class="external-link">data.org</a></p>
-<p><a href="https://www.en.build.aau.dk" class="external-link">Department of the Built Environment, Aalborg University</a></p>
+<p>The package is part of a research project which gratefully acknowledges financial support from <a href="https://data.org" class="external-link">data.org</a> and <a href="https://www.en.build.aau.dk" class="external-link">Department of the Built Environment, Aalborg University</a>. The author thanks colleagues at urbanLAB <a href="https://www.en.build.aau.dk" class="external-link">(Department of the Built Environment, Aalborg University)</a> and <a href="https://dataclinic.twosigma.com" class="external-link">Data Clinic (Two Sigma)</a> for their input and suggestions for the initial build.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
@@ -104,7 +96,7 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing polygone</a></li>
+<li><a href="authors.html#citation">Citing polygoneR</a></li>
 </ul>
 </div>
 
