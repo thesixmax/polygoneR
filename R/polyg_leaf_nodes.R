@@ -1,10 +1,10 @@
-#' Leaf nodes of an `sf` LINESTRING object
+#' Identify leaf nodes of an `sf` LINESTRING object
 #' @description Helper function for computing leaf nodes of an `sf` MULTILINESTRING or LINESTRING object.
 #' @importFrom sf st_geometry_type st_cast st_sfc st_geometry st_union st_intersects st_sf
 #' @param input_lines object of class sf of type LINESTRING or MULTILINESTRING.
 #' @return An sf object of type POINT containing all leaf nodes of `input`.
-#' @details Function to compute leaf nodes, i.e. nodes which do no intersect
-#' with other nodes in the `sf` LINESTRING object. If `input` contains geometries
+#' @details Function to compute leaf nodes, i.e. nodes which only intersect
+#' with one linestring in the `sf` LINESTRING object. If `input` contains geometries
 #' of type MULTILINESTRING, they are cast to LINESTRING before computing.
 #' @export
 polyg_leaf_nodes <- function(input_lines) {

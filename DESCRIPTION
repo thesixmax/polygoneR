@@ -1,7 +1,7 @@
-Package: polygone
+Package: polygoneR
 Type: Package
 Title: Manipulate polygon and linestring data in R
-Version: 0.2.0
+Version: 0.3
 Author: Sixten Maxmillian Thestrup
 Maintainer: Sixten Maximillian Thestrup <smth@build.aau.dk>
 Description: This package is an extension of existing packages such as sf. 

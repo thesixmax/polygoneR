@@ -2,7 +2,7 @@
 % Please edit documentation in R/polyg_leaf_nodes.R
 \name{polyg_leaf_nodes}
 \alias{polyg_leaf_nodes}
-\title{Leaf nodes of an \code{sf} LINESTRING object}
+\title{Identify leaf nodes of an \code{sf} LINESTRING object}
 \usage{
 polyg_leaf_nodes(input_lines)
 }
@@ -16,7 +16,7 @@ An sf object of type POINT containing all leaf nodes of \code{input}.
 Helper function for computing leaf nodes of an \code{sf} MULTILINESTRING or LINESTRING object.
 }
 \details{
-Function to compute leaf nodes, i.e. nodes which do no intersect
-with other nodes in the \code{sf} LINESTRING object. If \code{input} contains geometries
+Function to compute leaf nodes, i.e. nodes which only intersect
+with one linestring in the \code{sf} LINESTRING object. If \code{input} contains geometries
 of type MULTILINESTRING, they are cast to LINESTRING before computing.
 }

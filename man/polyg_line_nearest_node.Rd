@@ -2,7 +2,7 @@
 % Please edit documentation in R/polyg_line_nearest_node.R
 \name{polyg_line_nearest_node}
 \alias{polyg_line_nearest_node}
-\title{Minimum distance linestring from an \code{sf} POINT object to nodes of a \code{sf} LINESTRING object}
+\title{Calculate the minimum distance linestring from an \code{sf} POINT object to nodes of a \code{sf} LINESTRING object}
 \usage{
 polyg_line_nearest_node(
   input_points,
@@ -26,11 +26,11 @@ An \code{sf} object of type LINESTRING containing the minimum distance linestrin
 connections from each point in \code{input_points} to nodes in \code{input_lines}.
 }
 \description{
-Compute the minimum distance linestring connection from an \code{sf} POINT object to nodes of an \code{sf} LINESTRING object
+Calculate the minimum distance linestring connection from an \code{sf} POINT object to nodes of an \code{sf} LINESTRING object
 }
 \details{
 For each point, the function computes the minimum distance to the intersection nodes of a set of
 linestrings and outputs the minimum distance linestrings. Empty linestrings as a result of
 equality between \code{input_points} and nodes in \code{input_lines}. If \code{input_points} or \code{input_lines} contain
-geometries of type MULTIPOINT or MULTILINESTRING, they are converted to POINT and LINESTRING before computing.
+geometries of type MULTIPOINT or MULTILINESTRING, they are converted to POINT and LINESTRING respectively before computing.
 }

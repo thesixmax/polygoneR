@@ -2,7 +2,7 @@
 % Please edit documentation in R/polyg_angles.R
 \name{polyg_angles}
 \alias{polyg_angles}
-\title{Minimum and maximum angles between two \code{sf} LINESTRING objects}
+\title{Calculate the minimum and maximum angles between two \code{sf} LINESTRING objects}
 \usage{
 polyg_angles(input1, input2)
 }
@@ -16,9 +16,6 @@ An sf object equivalent to \code{input1} with added columns containing
 minimum and maximum angles.
 }
 \description{
-Function for computing the minimum and maximum angles
+Function for calculating the minimum and maximum angles
 between two intersecting \code{sf} MULTILINESTRING or LINESTRING objects.
-}
-\details{
-Details
 }

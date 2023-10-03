@@ -3,7 +3,7 @@
 #' @importFrom sf st_geometry st_geometry_type st_coordinates st_sfc st_multilinestring st_crs st_set_geometry
 #' @param input_lines object of class sf or sfc with geometry type MULTILINESTRING or LINESTRING.
 #' @return An sf or sfc object of type LINESTRING containing the substrings of `input_lines`.
-#' @details The output is always LINESTRING of class matching the `input_lines` class.
+#' @details The output is always LINESTRING of class matching the class of `input_lines`.
 #' @export
 polyg_cast_substring <- function(input_lines) {
   geometry <- sf::st_geometry(input_lines)

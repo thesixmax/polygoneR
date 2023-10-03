@@ -1,12 +1,11 @@
-#' Minimum and maximum angles between two `sf` LINESTRING objects
-#' @description Function for computing the minimum and maximum angles 
+#' Calculate the minimum and maximum angles between two `sf` LINESTRING objects
+#' @description Function for calculating the minimum and maximum angles 
 #' between two intersecting `sf` MULTILINESTRING or LINESTRING objects.
 #' @importFrom sf st_geometry_type st_geometry st_intersects st_coordinates st_sf
 #' @param input1 object of class sf or sfc of type LINESTRING or MULTILINESTRING.
 #' @param input2 object of class sf or sfc of type LINESTRING or MULTILINESTRING.
 #' @return An sf object equivalent to `input1` with added columns containing 
 #' minimum and maximum angles.
-#' @details Details
 #' @export
 polyg_angles <- function(input1, input2) {
   if (!unique(sf::st_geometry_type(input1)) %in% c("MULTILINESTRING", "LINESTRING")) {
@@ -39,6 +38,3 @@ polyg_angles <- function(input1, input2) {
   out$max_angle <- unlist(angles[2,])
   return(out)
 }
-
-
-

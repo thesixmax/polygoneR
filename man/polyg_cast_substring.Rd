@@ -16,5 +16,5 @@ An sf or sfc object of type LINESTRING containing the substrings of \code{input_
 Helper function for computing the substrings of an \code{sf} MULTILINESTRING or LINESTRING object.
 }
 \details{
-The output is always LINESTRING of class matching the \code{input_lines} class.
+The output is always LINESTRING of class matching the class of \code{input_lines}.
 }
