@@ -1,5 +1,5 @@
 #' Cast an `sf` object to substring
-#' @description Helper function for computing the substrings of an `sf` MULTILINESTRING or LINESTRING object.
+#' @description Function for computing the substrings of an `sf` MULTILINESTRING or LINESTRING object.
 #' @importFrom sf st_geometry st_geometry_type st_coordinates st_sfc st_multilinestring st_crs st_set_geometry
 #' @param input_lines object of class sf or sfc with geometry type MULTILINESTRING or LINESTRING.
 #' @return An sf or sfc object of type LINESTRING containing the substrings of `input_lines`.
